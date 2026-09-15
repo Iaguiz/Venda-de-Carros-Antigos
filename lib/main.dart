@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:carros_antigos/models/cars.dart';
+import 'package:carros_antigos/views/widgets/cars_card.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +22,8 @@ class MyApp extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                
+                for(var car in carsMock)
+                  CarsCard(cars: car)
               ],
             ),
           )
