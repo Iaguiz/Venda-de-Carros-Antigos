@@ -7,6 +7,17 @@ class CarsCard extends StatelessWidget {
 
   const CarsCard({ super.key, required this.cars });
 
+  String _formatMilhar(num valor) {
+    final s = valor.toStringAsFixed(0);
+    final buffer = StringBuffer();
+    for (int i = 0; i < s.length; i++) {
+      final restantes = s.length - i;
+      buffer.write(s[i]);
+      if (restantes > 1 && restantes % 3 == 1) buffer.write('.');
+    }
+    return buffer.toString();
+  }
+
   @override
   Widget build(BuildContext context){
     return Column(
@@ -30,9 +41,9 @@ class CarsCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(cars.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                Text('${cars.km}km - ${cars.year} - ${cars.color}', style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+                Text('${_formatMilhar(cars.km)}km - ${cars.year} - ${cars.color}', style: TextStyle(fontSize: 16, color: Colors.grey[600])),
                 SizedBox(height: 3),
-                Text('R\$${cars.price}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                Text('R\$${_formatMilhar(cars.price)}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 SizedBox(height: 3),
                 Text('Há ${cars.publishedDate} dias | ${cars.location}')
               ],
