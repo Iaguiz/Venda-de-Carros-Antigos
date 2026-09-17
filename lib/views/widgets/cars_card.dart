@@ -37,16 +37,18 @@ class CarsCard extends StatelessWidget {
 
             SizedBox(width: 12),
 
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(cars.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                Text('${_formatMilhar(cars.km)}km - ${cars.year} - ${cars.color}', style: TextStyle(fontSize: 16, color: Colors.grey[600])),
-                SizedBox(height: 3),
-                Text('R\$${_formatMilhar(cars.price)}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                SizedBox(height: 3),
-                Text('Há ${cars.publishedDate} dias | ${cars.location}')
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(cars.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  Text('${_formatMilhar(cars.km)}km - ${cars.year} - ${cars.color}', style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+                  SizedBox(height: 3),
+                  Text('R\$${_formatMilhar(cars.price)}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 3),
+                  Text('Há ${cars.publishedDate} dias | ${cars.location}')
+                ],
+              ),
             )
           ],
         ),
