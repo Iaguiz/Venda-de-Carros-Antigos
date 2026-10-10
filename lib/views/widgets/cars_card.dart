@@ -1,3 +1,4 @@
+import 'package:carros_antigos/views/pages/car_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:carros_antigos/models/cars.dart';
 
@@ -20,40 +21,50 @@ class CarsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
-    return Column(
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                cars.image,
-                width: 120,
-                height: 120,
-                fit: BoxFit.cover,
+    return InkWell(
+      onTap: (){
+        Navigator.push(
+          context, 
+          MaterialPageRoute(
+            builder: (context) => CarDetailsPage(cars: cars),
+          )
+        );
+      },
+      child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  cars.image,
+                  width: 120,
+                  height: 120,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-
-            SizedBox(width: 12),
-
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(cars.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                  Text('${_formatMilhar(cars.km)}km - ${cars.year} - ${cars.color}', style: TextStyle(fontSize: 16, color: Colors.grey[600])),
-                  SizedBox(height: 3),
-                  Text('R\$${_formatMilhar(cars.price)}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 3),
-                  Text('Há ${cars.publishedDate} dias | ${cars.location}')
-                ],
-              ),
-            )
-          ],
-        ),
-        SizedBox(height: 10)
-      ],
+      
+              SizedBox(width: 12),
+      
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(cars.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    Text('${_formatMilhar(cars.km)}km - ${cars.year} - ${cars.color}', style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+                    SizedBox(height: 3),
+                    Text('R\$${_formatMilhar(cars.price)}', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                    SizedBox(height: 3),
+                    Text('Há ${cars.publishedDate} dias | ${cars.location}')
+                  ],
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: 10)
+        ],
+      ),
     );
   }
 }
